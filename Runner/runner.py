@@ -1,25 +1,24 @@
 # -*- coding: utf-8 -*-
-#from TestCase.JSLifeAppTest import JsLifeAppTest
-
 __author__ = 'sky'
 import sys
 
 sys.path.append("..")
 import platform
+from TestCase.JsLifeAppTestCase.JSLifeAppTest import JsLifeAppTest
+#from TestCase.JsLifeAppTestCase.LoginPageTest import LoginPageTest
 from Base.BaseAndroidPhone import *
 from Base.BaseAdb import *
 from Base.BaseRunner import ParametrizedTestCase
-from TestCase.LoginPageTest import LoginPageTest
-from TestCase.MyPageTest import MyPageTest
 from Base.BaseAppiumServer import AppiumServer
 from multiprocessing import Pool
 import unittest
-from Base.BaseInit import init, mk_file
-from Base.BaseStatistics import countDate, writeExcel, countSumDevices
+from Base.BaseInit import mk_file
+from Base.BaseStatistics import countDate, writeExcel
 from Base.BasePickle import *
 from datetime import datetime
 from Base.BaseApk import ApkInfo
 from Base.BaseEmail import sendEmail
+
 PATH = lambda p: os.path.abspath(
     os.path.join(os.path.dirname(__file__), p)
 )
@@ -62,9 +61,9 @@ def runnerPool(getDevices):
 def runnerCaseApp(devices):
     starttime = datetime.now()
     suite = unittest.TestSuite()
-    suite.addTest(ParametrizedTestCase.parametrize(LoginPageTest, param=devices))
-    suite.addTest(ParametrizedTestCase.parametrize(MyPageTest, param=devices)) #加入测试类
-    #suite.addTest(ParametrizedTestCase.parametrize(JsLifeAppTest, param=devices))  # 加入测试类
+    #suite.addTest(ParametrizedTestCase.parametrize(LoginPageTest, param=devices))
+    #suite.addTest(ParametrizedTestCase.parametrize(MyPageTest, param=devices)) #加入测试类
+    suite.addTest(ParametrizedTestCase.parametrize(JsLifeAppTest, param=devices))  # 加入测试类
 
     unittest.TextTestRunner(verbosity=2).run(suite)
     endtime = datetime.now()

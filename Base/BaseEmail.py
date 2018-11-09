@@ -40,7 +40,7 @@ class Mailer(object):
         msg.attach(puretext)
 
         # jpg类型的附件
-        #jpgpart = MIMEApplication(open('/home/mypan/1949777163775279642.jpg', 'rb').read())
+        #jpgpart = MIMEApplication(open('/01_home/mypan/1949777163775279642.jpg', 'rb').read())
         #jpgpart.add_header('Content-Disposition', 'attachment', filename='beauty.jpg')
         #msg.attach(jpgpart)
 
@@ -77,7 +77,7 @@ def sendEmail():
     introduction = read(PATH("../Log/" + Element.DEVICES_FILE))
 
     #读取模板
-    mail_content = readTemplate(PATH("../Report/"+Element.TEMPLATE_PATH))
+    mail_content = readTemplate("../Report/" + Element.TEMPLATE_PATH)
 
     # 生成总况表
     mail_content = mail_content.replace("$versionCode", sumData["versionCode"])
@@ -112,7 +112,7 @@ if __name__ == '__main__':
 
     mailto_list = ["guobiao.hu@jieshun.cn"]
     mail_title = 'appium测试'
-    mail_content = readTemplate(Element.TEMPLATE_PATH)
+    mail_content = readTemplate("../Report/" + Element.TEMPLATE_PATH)
 
     #生成总况表
     mail_content=mail_content.replace("$versionCode",sumData["versionCode"])
